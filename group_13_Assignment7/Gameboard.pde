@@ -10,6 +10,9 @@ class Gameboard {
   //snake variables
   char direction = 'd';
   int[] snakeHead = {tableSize/2, tableSize/2};
+  
+  //food variables
+  int[] foodLoc = {(int)random(tableSize), (int)random(tableSize)};
 
   // Array of cells
   int[][] cells;
@@ -21,6 +24,7 @@ class Gameboard {
     //initial snake
     cells[tableSize/2-1][tableSize/2] = 1;
     cells[tableSize/2][tableSize/2] = 2;
+    cells[foodLoc[0]][foodLoc[1]] = -1;
   }
 
   void test() {
@@ -33,6 +37,15 @@ class Gameboard {
     }
     println();
     println();
+  }
+  
+  void food() {
+    // need to randomly generate the food in a place that the snake does not occupy
+    while(cells[foodLoc[0]][foodLoc[1]] !=0) {
+      foodLoc[0] = (int)random(tableSize);
+      foodLoc[1] = (int)random(tableSize);
+    }
+    cells[foodLoc[0]][foodLoc[1]] = -1;
   }
 
   void run(){
@@ -59,6 +72,12 @@ class Gameboard {
     
 
     
+    //check for food
+    if(snakeHead[0] == foodLoc[0] && snakeHead[1] == foodLoc[1]){
+      food(); //generate new food
+      myScoreboard.increment();
+    }
+    
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
         if (cells[x][y] > 0) {
@@ -71,6 +90,8 @@ class Gameboard {
         //display
         if (cells[x][y] >= 1) {
           fill(snake);
+        } else if (cells[x][y] == -1){
+          fill(0);
         } else {
           fill(255);
         }
@@ -81,4 +102,5 @@ class Gameboard {
 
     
   }
+  
 }
