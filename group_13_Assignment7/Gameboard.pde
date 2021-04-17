@@ -6,10 +6,11 @@ class Gameboard {
   // Size of cells
   int tableSize = 30;
   int cellSize = 20;
- 
+  int moveTable = 80;
+  
+  
   // Array of cells
   int[][] cells;
-  // Buffer to record the state of the cells and use this while changing the others in the interations
   int[][] cellsBuffer;
   
   Gameboard(){
@@ -28,9 +29,10 @@ class Gameboard {
   }
   
   void display(){
+    fill(255);
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
-        rect(x*cellSize, y*cellSize, cellSize, cellSize);
+        rect(x*cellSize+moveTable, y*cellSize+moveTable, cellSize, cellSize);
       }
     }
   }
