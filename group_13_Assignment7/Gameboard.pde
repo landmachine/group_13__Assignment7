@@ -35,11 +35,26 @@ class Gameboard {
   }
   
   void run(){
+  //right
   if(direction == "d"){
     cells[snakeHead[0]+1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
     snakeHead[0] += 1;
   }
-    
+  //down
+  if(direction == "s"){
+    cells[snakeHead[0]][snakeHead[1]+1] = cells[snakeHead[0]][snakeHead[1]] + 1;
+    snakeHead[1] += 1;
+  }
+  //left
+  if(direction == "a"){
+    cells[snakeHead[0]-1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
+    snakeHead[0] -= 1;
+  }
+  //up
+  if(direction == "w"){
+    cells[snakeHead[0]][snakeHead[1]-1] = cells[snakeHead[0]][snakeHead[1]] + 1;
+    snakeHead[1] -= 1;
+  }
     
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
