@@ -1,3 +1,4 @@
+Timer time;
 Gameboard gameboard1;
 Scoreboard myScoreboard;
 PFont titleFont;
@@ -5,24 +6,28 @@ PFont titleFont;
 void setup() {
   size(800, 800);
   titleFont = createFont("SansSerif", 32);
+  time = new Timer(1000);
   myScoreboard = new Scoreboard(titleFont);
   gameboard1 = new Gameboard();
-  
-  frameRate(5);
+
+  //frameRate(1);
 }
 
 void draw() {
-  background(color(107,191,247));
-  textFont(titleFont);
-  textAlign(CENTER);
-  text("Snake", width/2, 40);
-  myScoreboard.display();
+  //run everything
+  if (time.isTime()) {
+    //GUI
+    background(color(107, 191, 247));
+    textFont(titleFont);
+    textAlign(CENTER);
+    text("Snake", width/2, 40);
+    
+    //game engine
+    myScoreboard.display();
+    gameboard1.run();
+    //gameboard1.test();
+  }
   
-  
-  gameboard1.run();
-  gameboard1.test();
-  
-  //noLoop();
 }
 
 void mousePressed() {

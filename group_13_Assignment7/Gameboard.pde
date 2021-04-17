@@ -55,7 +55,9 @@ class Gameboard {
     if(direction == 'w'){
       cells[snakeHead[0]][snakeHead[1]-1] = cells[snakeHead[0]][snakeHead[1]] + 1;
       snakeHead[1] -= 1;
-    }
+    }        
+    
+
     
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
@@ -75,5 +77,8 @@ class Gameboard {
         rect(x*cellSize+moveTable, y*cellSize+moveTable, cellSize, cellSize);
       }
     }
+    
+
+    
   }
 }
