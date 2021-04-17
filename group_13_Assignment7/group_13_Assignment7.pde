@@ -31,6 +31,8 @@ void mousePressed() {
 
 void keyPressed() {
   if (key == 'a' || key == 's' || key == 'd' || key == 'w') {
-    gameboard1.direction = key;
+    if( (key == 'a' && gameboard1.direction != 'd') || (key == 'd' && gameboard1.direction != 'a') || (key == 'w' && gameboard1.direction != 's') || (key == 's' && gameboard1.direction != 'w') ){
+      gameboard1.direction = key;
+    }
   }
 }
