@@ -7,6 +7,8 @@ void setup() {
   titleFont = createFont("SansSerif", 32);
   myScoreboard = new Scoreboard(titleFont);
   gameboard1 = new Gameboard();
+  
+  frameRate(1);
 }
 
 void draw() {
@@ -16,9 +18,11 @@ void draw() {
   text("Snake", width/2, 40);
   myScoreboard.display();
   
-  gameboard1.display();
   
-  noLoop();
+  gameboard1.run();
+  gameboard1.test();
+  
+  //noLoop();
 }
 
 void mousePressed() {
