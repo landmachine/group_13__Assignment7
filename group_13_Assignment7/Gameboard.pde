@@ -12,7 +12,7 @@ class Gameboard {
   int[] snakeHead = {tableSize/2, tableSize/2};
 
   //food variables
-  int[] foodLoc = {(int)random(tableSize), (int)random(tableSize)};
+  int[] foodLoc = {12,12};
 
   // Array of cells
   int[][] cells;
