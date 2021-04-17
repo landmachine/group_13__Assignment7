@@ -72,7 +72,8 @@ class Gameboard {
     
     //check for food
     if(snakeHead[0] == foodLoc[0] && snakeHead[1] == foodLoc[1]){
-      food();
+      food(); //generate new food
+      myScoreboard.increment();
     }
     
     for (int x=0; x<cells.length; x++) {
