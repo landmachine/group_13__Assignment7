@@ -73,17 +73,20 @@ class Gameboard {
 
     
     //check for food
+    boolean eat = false;
     if(snakeHead[0] == foodLoc[0] && snakeHead[1] == foodLoc[1]){
+      eat = true;
       food(); //generate new food
       myScoreboard.increment();
     }
     
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
-        if (cells[x][y] > 0) {
-          cells[x][y] -= 1;
+        if (!eat){
+          if (cells[x][y] > 0) {
+            cells[x][y] -= 1;
+          }
         }
-
 
 
 
