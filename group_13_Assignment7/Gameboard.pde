@@ -8,7 +8,7 @@ class Gameboard {
   int moveTable = (width-(tableSize*cellSize))/2;
 
   //snake variables
-  String direction = "d";
+  char direction = 'd';
   int[] snakeHead = {tableSize/2, tableSize/2};
 
   // Array of cells
@@ -35,13 +35,28 @@ class Gameboard {
     println();
   }
 
-  void run() {
-    if (direction == "d") {
+  void run(){
+    //right
+    if(direction == 'd'){
       cells[snakeHead[0]+1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
       snakeHead[0] += 1;
     }
-
-
+    //down
+    if(direction == 's'){
+      cells[snakeHead[0]][snakeHead[1]+1] = cells[snakeHead[0]][snakeHead[1]] + 1;
+      snakeHead[1] += 1;
+    }
+    //left
+    if(direction == 'a'){
+      cells[snakeHead[0]-1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
+      snakeHead[0] -= 1;
+    }
+    //up
+    if(direction == 'w'){
+      cells[snakeHead[0]][snakeHead[1]-1] = cells[snakeHead[0]][snakeHead[1]] + 1;
+      snakeHead[1] -= 1;
+    }
+    
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
         if (cells[x][y] > 0) {
@@ -61,8 +76,4 @@ class Gameboard {
       }
     }
   }
-}
-
-void keyPressed(){
-  
 }

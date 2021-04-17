@@ -8,7 +8,7 @@ void setup() {
   myScoreboard = new Scoreboard(titleFont);
   gameboard1 = new Gameboard();
   
-  frameRate(1);
+  frameRate(5);
 }
 
 void draw() {
@@ -27,4 +27,10 @@ void draw() {
 
 void mousePressed() {
   myScoreboard.increment();
+}
+
+void keyPressed() {
+  if (key == 'a' || key == 's' || key == 'd' || key == 'w') {
+    gameboard1.direction = key;
+  }
 }
