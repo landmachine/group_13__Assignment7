@@ -31,7 +31,7 @@ class Timer {
     if (paused) {
       paused = false;
       milliStart = millis() - (pausedTime - milliStart);
-      //^Accounts for time passed before timer was paused
+      //Accounts for time passed before timer was paused
       return true;
     }
     return false;
