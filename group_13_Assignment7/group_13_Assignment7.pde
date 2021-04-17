@@ -6,7 +6,7 @@ PFont titleFont;
 void setup() {
   size(800, 800);
   titleFont = createFont("SansSerif", 32);
-  time = new Timer(1000);
+  time = new Timer(500);
   myScoreboard = new Scoreboard(titleFont);
   gameboard1 = new Gameboard();
 
@@ -36,7 +36,7 @@ void mousePressed() {
 
 void keyPressed() {
   if(key == ' '){
-    println('xxxxx');
+    println("space bar!");
   }
   
   else if (key == 'a' || key == 's' || key == 'd' || key == 'w') {
