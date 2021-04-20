@@ -1,43 +1,64 @@
 Timer time;
-Gameboard gameboard1;
+Gameboard myGameboard;
 Scoreboard myScoreboard;
-PFont titleFont;
+
 
 void setup() {
+  //general settings
   size(800, 800);
-  titleFont = createFont("SansSerif", 32);
-  time = new Timer(500);
-  myScoreboard = new Scoreboard(titleFont);
-  gameboard1 = new Gameboard();
-
-  //frameRate(1);
+  
+  //initialize the game
+  time = new Timer(250);
+  myScoreboard = new Scoreboard();
+  myGameboard = new Gameboard();
 }
 
 void draw() {
-  //run everything
+  
+  //run everything according to the time
   if (time.isTime()) {
     //GUI
     background(color(107, 191, 247));
-    textFont(titleFont);
-    textAlign(CENTER);
-    text("Snake", width/2, 40);
+    myScoreboard.display_score();
+    myScoreboard.display_title();
     
-    //game engine
-    myScoreboard.display();
-    gameboard1.run();
+    //Game Engine
+    myGameboard.run();
     //gameboard1.test();
   }
   
 }
 
 void mousePressed() {
-  myScoreboard.increment();
+  //TEMPORARY!
+  if (!time.paused){
+    time.pause();
+  }else{
+    time.unpause();
+  }
 }
 
-void keyPressed() {  
-  if (key == 'a' || key == 's' || key == 'd' || key == 'w') {
-    if( (key == 'a' && gameboard1.direction != 'd') || (key == 'd' && gameboard1.direction != 'a') || (key == 'w' && gameboard1.direction != 's') || (key == 's' && gameboard1.direction != 'w') ){
-      gameboard1.direction = key;
+void keyPressed() {
+  //handle arrow keys
+  if(key == CODED){
+    if(keyCode == LEFT){
+      key = 'a';
+    }
+    if(keyCode == RIGHT){
+      key = 'd';
+    }
+    if(keyCode == UP){
+      key = 'w';
+    }
+    if(keyCode == DOWN){
+      key = 's';
     }
   }
+  
+  //change the directions
+  //   FIXME: dont allow direction changes till snakes moves at least 1 block
+  if( (key == 'a' && myGameboard.direction != 'd') || (key == 'd' && myGameboard.direction != 'a') || (key == 'w' && myGameboard.direction != 's') || (key == 's' && myGameboard.direction != 'w') ){
+    myGameboard.direction = key;
+  }
+  
 }

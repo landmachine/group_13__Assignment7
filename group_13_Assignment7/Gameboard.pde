@@ -152,6 +152,5 @@ class Gameboard {
       }
     }
 
-    test();
   }
 }

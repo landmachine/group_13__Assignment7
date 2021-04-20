@@ -1,21 +1,31 @@
 class Scoreboard {
   int score;
-  PFont font;
+  PFont scoreFont;
+  PFont titleFont;
 
-  Scoreboard(PFont f) {
+  Scoreboard() {
     score = 0;
-    font = f;
+    scoreFont = createFont("SansSerif", 32);
+    titleFont = createFont("SansSerif", 32);
   }
 
   void increment() {
     score += 1;
   }
 
-  void display() {
-    textFont(font);
+  void display_score() {
+    textFont(scoreFont);
     textAlign(LEFT);
     textSize(20);
     fill(0);
-    text("Score: " + score, 10, 30);
+    text("Score: " + score, 15, 30);
+  }
+
+  void display_title() {
+    textFont(titleFont);
+    textAlign(CENTER);
+    textSize(35);
+    fill(0);
+    text("Snake", width/2, 40);
   }
 }
