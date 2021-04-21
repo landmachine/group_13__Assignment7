@@ -1,26 +1,25 @@
 class Gameboard {
-  // Colors for active/inactive cells
+  // Chose a random color for our snake
   color snake = color(random(200), random(200), random(200));
 
-  // Size of cells
+  // Size of the game/cells
   int tableSize = 20;
   int cellSize = 30;
   int moveTable = (width-(tableSize*cellSize))/2;
 
-  //snake variables
+  // Snake variables
   char direction = 'd';
   int[] snakeHead = {tableSize/2, tableSize/2};
 
-  //food variables
-  int[] foodLoc = {12, 12};
+  // Food variables
+  int[] foodLoc = {7, 5};
 
-  // Array of cells
+  // The 2d grid where all the calculations are made
   int[][] cells;
 
-  boolean paused = false;
 
   Gameboard() {
-    // Instantiate arrays 
+    // Instantiate the array 
     cells = new int[tableSize][tableSize];
 
     //initial snake
@@ -38,6 +37,10 @@ class Gameboard {
     }
   }
 
+  //call this function to see the underlying 2d grid!
+  // -3: borders
+  // -1: food
+  // n>0: snake
   void test() {
     for (int y=0; y<cells.length; y++) {
       for (int x=0; x<cells.length; x++) {
@@ -58,35 +61,28 @@ class Gameboard {
     cells[foodLoc[0]][foodLoc[1]] = -1;
   }
 
-  void defeat() {
-    fill(0);
-    rect(width/2-50, height/2-25, 100, 50);
-    fill(255);
-    textAlign(CENTER);
-    text("You Lost.", width/2, height/2);
-    paused = time.pause();
-    println(true);
+  void collision() {
+    g_win = false;
+    g_gameOver = true;
   }
   
   void victory() {
-    fill(0);
-    rect(width/2-50, height/2-25, 100, 50);
-    fill(255);
-    textAlign(CENTER);
-    text("You Won!.", width/2, height/2);
-    paused = time.pause();
-    println(true);
+    g_win = true;
+    g_gameOver = true;
   }
 
   void run() {
-    //right
-    if (myScoreboard.score >= pow(tableSize, 2) - 3) {
+    //victory conditions
+    //if (myScoreboard.score >= pow(tableSize, 2) - 3) {
+    if (myScoreboard.score >= g_goalScore) {
       victory();
       return;
+      
     }
+    //right
     if (direction == 'd') {
       if (cells[snakeHead[0]+1][snakeHead[1]] < -2) {
-        defeat();
+        collision();
       }
       cells[snakeHead[0]+1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
       snakeHead[0] += 1;
@@ -94,7 +90,7 @@ class Gameboard {
     //down
     if (direction == 's') {
       if (cells[snakeHead[0]][snakeHead[1]+1] < -2) {
-        defeat();
+        collision();
       }
       cells[snakeHead[0]][snakeHead[1]+1] = cells[snakeHead[0]][snakeHead[1]] + 1;
       snakeHead[1] += 1;
@@ -102,7 +98,7 @@ class Gameboard {
     //left
     if (direction == 'a') {
       if (cells[snakeHead[0]-1][snakeHead[1]] < -2) {
-        defeat();
+        collision();
       }
       cells[snakeHead[0]-1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
       snakeHead[0] -= 1;
@@ -110,7 +106,7 @@ class Gameboard {
     //up
     if (direction == 'w') {
       if (cells[snakeHead[0]][snakeHead[1]-1] < -2) {
-        defeat();
+        collision();
       }
       cells[snakeHead[0]][snakeHead[1]-1] = cells[snakeHead[0]][snakeHead[1]] + 1;
       snakeHead[1] -= 1;
@@ -127,28 +123,28 @@ class Gameboard {
     }
 
 
-    if (!paused) {
-      for (int x=0; x<cells.length; x++) {
-        for (int y=0; y<cells.length; y++) {
-          if (!eat) {
-            if (cells[x][y] > 0) {
-              cells[x][y] -= 1;
-            }
+    for (int x=0; x<cells.length; x++) {
+      for (int y=0; y<cells.length; y++) {
+        
+        //tail movement
+        if (!eat) {
+          if (cells[x][y] > 0) {
+            cells[x][y] -= 1;
           }
-
-          noStroke();
-          //display
-          if (cells[x][y] >= 1) {
-            fill(snake);
-          } else if (cells[x][y] == -1) {
-            fill(0);
-          } else if (cells[x][y] == -3) {
-            fill(107, 191, 247);
-          } else {
-            fill(255);
-          }
-          rect(x*cellSize+moveTable, y*cellSize+moveTable, cellSize, cellSize);
         }
+
+        //display
+        if (cells[x][y] >= 1) {
+          fill(snake);
+        } else if (cells[x][y] == -1) {
+          fill(0);
+        } else if (cells[x][y] == -3) {
+          fill(107, 191, 247);
+        } else {
+          fill(255);
+        }
+        noStroke();
+        rect(x*cellSize+moveTable, y*cellSize+moveTable, cellSize, cellSize);
       }
     }
 

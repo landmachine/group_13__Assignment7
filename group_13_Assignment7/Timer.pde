@@ -1,8 +1,8 @@
 class Timer {
-  int displayTime;  //Ideal display time for each frame
-  int milliStart;   //Start time, corrected for pausing
-  int pausedTime;   //Time at which timer is paused
-  boolean paused;   //Is the timer paused?
+  int displayTime;  // Ideal display time for each frame
+  int milliStart;   // Start time, corrected for pausing
+  int pausedTime;   // Time at which timer is paused
+  boolean paused;   // Is the timer paused?
 
   Timer(int dt) {
     displayTime = dt;
@@ -24,6 +24,8 @@ class Timer {
       this.paused = true;
       this.pausedTime = millis();
       return true;
+      
+      //call pause gui -- TODO
     }
     return false;
   }
@@ -32,8 +34,9 @@ class Timer {
     if (this.paused) {
       this.paused = false;
       this.milliStart = millis() - (this.pausedTime - this.milliStart);
-      //Accounts for time passed before timer was paused
       return true;
+      
+      //remove pause gui -- TODO
     }
     return false;
   }

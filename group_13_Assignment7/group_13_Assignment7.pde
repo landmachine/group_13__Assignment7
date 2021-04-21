@@ -2,6 +2,10 @@ Timer time;
 Gameboard myGameboard;
 Scoreboard myScoreboard;
 
+//GLOBAL variables
+boolean g_gameOver;
+boolean g_win;
+int g_goalScore;
 
 void setup() {
   //general settings
@@ -11,13 +15,18 @@ void setup() {
   time = new Timer(250);
   myScoreboard = new Scoreboard();
   myGameboard = new Gameboard();
+  
+  //initialize global variables
+  g_gameOver = false;
+  g_win = false;
+  g_goalScore = 10;
 }
 
 void draw() {
   
   //run everything according to the time
-  if (time.isTime()) {
-    //GUI
+  if (time.isTime() && !g_gameOver) {
+    // Run GUI
     background(color(107, 191, 247));
     myScoreboard.display_score();
     myScoreboard.display_title();
@@ -25,20 +34,32 @@ void draw() {
     //Game Engine
     myGameboard.run();
     //gameboard1.test();
+  }else if (g_gameOver){
+    //GAME OVER !
+    myScoreboard.display_gameOver();
+    
+  }else if (time.paused){
+    //game is paused do nothing
+    //print("p");
   }
   
 }
 
 void mousePressed() {
-  //TEMPORARY!
-  if (!time.paused){
-    time.pause();
-  }else{
-    time.unpause();
+  if (!g_gameOver){
+    
+    //Pause/Unpause the game
+    if (!time.paused){
+      time.pause();
+      myScoreboard.display_pause_menu();
+    }else{
+      time.unpause();
+    }
+
   }
 }
 
-void keyPressed() {
+void keyPressed() {  
   //handle arrow keys
   if(key == CODED){
     if(keyCode == LEFT){
