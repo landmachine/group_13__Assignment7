@@ -81,7 +81,7 @@ class Gameboard {
     }
     //right
     if (direction == 'd') {
-      if (cells[snakeHead[0]+1][snakeHead[1]] < -2) {
+      if (cells[snakeHead[0]+1][snakeHead[1]] < -2 || cells[snakeHead[0]+1][snakeHead[1]] > 0) {
         collision();
       }
       cells[snakeHead[0]+1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
@@ -89,7 +89,7 @@ class Gameboard {
     }
     //down
     if (direction == 's') {
-      if (cells[snakeHead[0]][snakeHead[1]+1] < -2) {
+      if (cells[snakeHead[0]][snakeHead[1]+1] < -2 || cells[snakeHead[0]][snakeHead[1]+1] > 0) {
         collision();
       }
       cells[snakeHead[0]][snakeHead[1]+1] = cells[snakeHead[0]][snakeHead[1]] + 1;
@@ -97,7 +97,7 @@ class Gameboard {
     }
     //left
     if (direction == 'a') {
-      if (cells[snakeHead[0]-1][snakeHead[1]] < -2) {
+      if (cells[snakeHead[0]-1][snakeHead[1]] < -2 || cells[snakeHead[0]-1][snakeHead[1]] > 0) {
         collision();
       }
       cells[snakeHead[0]-1][snakeHead[1]] = cells[snakeHead[0]][snakeHead[1]] + 1;
@@ -105,7 +105,7 @@ class Gameboard {
     }
     //up
     if (direction == 'w') {
-      if (cells[snakeHead[0]][snakeHead[1]-1] < -2) {
+      if (cells[snakeHead[0]][snakeHead[1]-1] < -2 || cells[snakeHead[0]][snakeHead[1]-1] > 0) {
         collision();
       }
       cells[snakeHead[0]][snakeHead[1]-1] = cells[snakeHead[0]][snakeHead[1]] + 1;
@@ -122,7 +122,7 @@ class Gameboard {
       myScoreboard.increment();
     }
 
-
+    rectMode(CORNER);
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
         
