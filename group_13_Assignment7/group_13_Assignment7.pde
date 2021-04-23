@@ -5,6 +5,7 @@ Scoreboard myScoreboard;
 //GLOBAL variables
 boolean g_gameOver;
 boolean g_win;
+boolean allowKeyPress;
 int g_goalScore;
 
 void setup() {
@@ -20,6 +21,7 @@ void setup() {
   g_gameOver = false;
   g_win = false;
   g_goalScore = 10;
+  allowKeyPress = false;
 }
 
 void draw() {
@@ -31,6 +33,7 @@ void draw() {
     myScoreboard.display_entireTopBanner();
     //Game Engine
     myGameboard.run();
+    allowKeyPress = true;
     //gameboard1.test();
   } else if (g_gameOver) {
     //GAME OVER !
@@ -43,7 +46,7 @@ void draw() {
 }
 
 void mousePressed() {
-    myScoreboard.click();
+  myScoreboard.click();
 }
 
 void keyPressed() {  
@@ -66,6 +69,9 @@ void keyPressed() {
   //change the directions
   //   FIXME: dont allow direction changes till snakes moves at least 1 block
   if ( (key == 'a' && myGameboard.direction != 'd') || (key == 'd' && myGameboard.direction != 'a') || (key == 'w' && myGameboard.direction != 's') || (key == 's' && myGameboard.direction != 'w') ) {
-    myGameboard.direction = key;
+    if (allowKeyPress) {
+      allowKeyPress = false;
+      myGameboard.direction = key;
+    }
   }
 }
