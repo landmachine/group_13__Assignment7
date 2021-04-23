@@ -1,10 +1,9 @@
 class Gameboard {
-  // Chose a random color for our snake
-  color snake = color(random(200), random(200), random(200));
+  color snake; 
 
   // Size of the game/cells
-  int tableSize = 20;
-  int cellSize = 30;
+  int tableSize = 35;
+  int cellSize = 20;
   int moveTable = (width-(tableSize*cellSize))/2;
 
   // Snake variables
@@ -19,6 +18,9 @@ class Gameboard {
 
 
   Gameboard() {
+    // Chose a random color for our snake
+    snake = color(random(200), random(200), random(200));
+    
     // Instantiate the array 
     cells = new int[tableSize][tableSize];
 
@@ -122,6 +124,8 @@ class Gameboard {
       myScoreboard.increment();
     }
 
+    //grid rect settings
+    noStroke();
     rectMode(CORNER);
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
@@ -143,7 +147,6 @@ class Gameboard {
         } else {
           fill(255);
         }
-        noStroke();
         rect(x*cellSize+moveTable, y*cellSize+moveTable, cellSize, cellSize);
       }
     }

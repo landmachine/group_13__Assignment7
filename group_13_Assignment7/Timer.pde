@@ -24,8 +24,6 @@ class Timer {
       this.paused = true;
       this.pausedTime = millis();
       return true;
-      
-      //call pause gui -- TODO
     }
     return false;
   }
@@ -35,8 +33,6 @@ class Timer {
       this.paused = false;
       this.milliStart = millis() - (this.pausedTime - this.milliStart);
       return true;
-      
-      //remove pause gui -- TODO
     }
     return false;
   }

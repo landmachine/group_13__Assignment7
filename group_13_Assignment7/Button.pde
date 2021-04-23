@@ -29,15 +29,18 @@ class Button {
   void display() {
     color col;
     if (inShape()) {
+      // mouse hover
       col = color(100);
     } else {
+      // static
       col = color(150);
     }
     buttonGraphic.setFill(col);
     shapeMode(CENTER);
     shape(buttonGraphic, xPos, yPos);
     textAlign(CENTER, CENTER);
-    text(displayText, xPos, yPos);
+    text(displayText, xPos, yPos-4);
+    
   }
 
   boolean inShape() {
