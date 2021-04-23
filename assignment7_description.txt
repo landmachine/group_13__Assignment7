@@ -1,0 +1,16 @@
+
+
+We meet in-person to complete this assignment and wrote most of the code using the pair programming technique. So almost everyone has a contribution in every class. However, we stated the specific responsibilities assigned to individuals under the responsibilities section.
+
+
+
+Responsibilities:
+
+Claudia Wang:
+I focused my efforts on setting up the fonts and text portions, the colors, and the Gameboard. In Gameboard, I set up the border detection for the different sides. This section is the beginning portion of run with right, down, left, and up. I also set up the food by giving it a random location other than the starting location and allowing run to check for food at the location of the snakeHead to determine whether the score should increment.
+
+Landry Luker:
+I was responsible for the Button and Timer classes and was also responsible for the implementation of these classes. Additionally, I helped Claudia Wang with edge detection, and made the snake capable of detecting itself.
+
+Mehmet Zenginerler:
+I was responsible with the Gameboard class. I developed the overall gameboard grid and the movement of the snake. Additionally, I scripted the main .pde file that runs our custom classes. Lastly, I improved the GUI by adding pause/unpause functionality. 

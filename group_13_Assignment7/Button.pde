@@ -40,7 +40,6 @@ class Button {
     shape(buttonGraphic, xPos, yPos);
     textAlign(CENTER, CENTER);
     text(displayText, xPos, yPos-4);
-    
   }
 
   boolean inShape() {

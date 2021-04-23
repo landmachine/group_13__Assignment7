@@ -20,7 +20,7 @@ class Gameboard {
   Gameboard() {
     // Chose a random color for our snake
     snake = color(random(200), random(200), random(200));
-    
+
     // Instantiate the array 
     cells = new int[tableSize][tableSize];
 
@@ -67,7 +67,7 @@ class Gameboard {
     g_win = false;
     g_gameOver = true;
   }
-  
+
   void victory() {
     g_win = true;
     g_gameOver = true;
@@ -79,7 +79,6 @@ class Gameboard {
     if (myScoreboard.score >= g_goalScore) {
       victory();
       return;
-      
     }
     //right
     if (direction == 'd') {
@@ -129,7 +128,7 @@ class Gameboard {
     rectMode(CORNER);
     for (int x=0; x<cells.length; x++) {
       for (int y=0; y<cells.length; y++) {
-        
+
         //tail movement
         if (!eat) {
           if (cells[x][y] > 0) {
@@ -150,6 +149,5 @@ class Gameboard {
         rect(x*cellSize+moveTable, y*cellSize+moveTable, cellSize, cellSize);
       }
     }
-
   }
 }

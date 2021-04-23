@@ -1,7 +1,6 @@
 ## CS 324E - Assignment 7 - Games
 
-Authors: Claudia Wang, Landry Luker, Mehmet Yavuz Zenginerler
-UT EIDs:
+Authors: Claudia Wang, Landry Luker, Mehmet Yavuz Zenginerler <br>
 
 
 ### Instructions

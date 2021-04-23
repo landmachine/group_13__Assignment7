@@ -89,15 +89,15 @@ void keyPressed() {
       key = 's';
     }
   }
+
   //change the directions
-  //   FIXME: dont allow direction changes till snakes moves at least 1 block
   if ( (key == 'a' && myGameboard.direction != 'd') || (key == 'd' && myGameboard.direction != 'a') || (key == 'w' && myGameboard.direction != 's') || (key == 's' && myGameboard.direction != 'w') ) {
     if (allowKeyPress) {
       myGameboard.direction = key;
       allowKeyPress = false;
     }
   }
-  
+
   // game pause input
   if (key== 'p') {
     if (!g_gameOver && !g_start) {
@@ -109,9 +109,9 @@ void keyPressed() {
       }
     }
   }
-  
+
   // restart the game!
-  if (key=='r'){
+  if (key=='r') {
     setup();
   }
 }
